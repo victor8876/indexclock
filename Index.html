@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #clock {
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">Loading time...</div>
+    <script>
+        // Set the starting date
+        const startDate = new Date('August 10, 2024');
+
+        function updateClock() {
+            const now = new Date();
+            // Calculate the difference in days from the start date
+            const timeDiff = now - startDate;
+            const dayCount = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+
+            // Format the date and time
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            const dateString = now.toLocaleDateString('en-US', options);
+            const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+            // Update the clock element
+            document.getElementById('clock').innerText = `Day ${dayCount} | ${dateString} | ${timeString}`;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
